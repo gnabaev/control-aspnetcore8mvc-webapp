@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Project>;
+
+@{
+    ViewData["Title"] = "Проекты";
+}
+
+<a asp-controller="Project" asp-action="Add" class="btn btn-outline-success">Добавить</a>
+<div class="row">
+    @foreach (var project in Model)
+    {
+        <div class="card" style="max-width: 100%">
+            <div class="row">
+                <div class="col">
+                    <img src="/images/project.png" class="img-fluid rounded-start" alt="Изображение проекта">
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Name</h5>
+                        <p class="card-text">@project.Description</p>
+                        <p class="card-text">@project.Status</p>
+
+                        @if (project.Admin != null)
+                        {
+                            <p class="card-text">
+                                Администратор: <span class="badge bg-success text-white">@project.Admin</span>
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                Администратор: <span class="badge bg-danger text-white">Не назначено</span>
+                            </p>
+                        }
+
+                        @if (project.Users != null)
+                        {
+                            <p class="card-text">
+                                Пользователи:
+                                <div>
+                                    @foreach (var user in project.Users)
+                                    {
+                                        <span class="badge bg-primary text-white">@user.Fullname</span>
+                                    }
+                                </div>
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text">
+                                Пользователи: <span class="badge bg-danger text-white">Не назначено</span>
+                            </p>
+                        }
+
+                        <a class="btn btn-outline-primary" asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

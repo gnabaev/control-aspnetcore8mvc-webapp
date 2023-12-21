@@ -20,6 +20,6 @@ namespace Control.Web.Models
 		}
 
 		// Реляционные отношения
-		public List<Project>? Projects { get; set; }
+		public List<Project>? Projects { get; set; } = new List<Project>();
 	}
 }

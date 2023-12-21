@@ -1,4 +1,15 @@
+using Control.Web.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Подключение базы данных
+string connection = builder.Configuration.GetConnectionString("DefaultConnectionString");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+
+// Регистрация сервисов
+builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IProjectsService, ProjectsService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
