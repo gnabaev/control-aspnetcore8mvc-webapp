@@ -41,7 +41,46 @@ namespace Control.Web.Models
 			}
 		}
 
-		public ProjectDropdownsViewModel GetProjectDropdowns()
+		public void EditProject(ProjectViewModel projectVM)
+		{
+			var projectDb = _context.Projects.FirstOrDefault(p => p.Id == projectVM.Id);
+
+			if (projectDb != null)
+			{
+				projectDb.Name = projectVM.Name;
+				projectDb.Description = projectVM.Description;
+				projectDb.Status = projectVM.Status;
+
+				_context.SaveChanges();	
+			}
+
+			var userProjects = _context.UserProjects.Where(up => up.ProjectId == projectVM.Id).ToList();
+
+			_context.UserProjects.RemoveRange(userProjects);
+
+			if (projectVM.UserIds != null)
+			{
+				foreach (var userId in projectVM.UserIds)
+				{
+					var userProject = new UserProject()
+					{
+						ProjectId = projectVM.Id,
+						UserId = userId
+					};
+
+					_context.UserProjects.Add(userProject);
+				}
+
+				_context.SaveChanges();
+			}
+		}
+
+		public Project GetProjectById(int id)
+        {
+			return _context.Projects.Include(p => p.UserProjects).ThenInclude(p => p.User).FirstOrDefault(p => p.Id == id);
+        }
+
+        public ProjectDropdownsViewModel GetProjectDropdowns()
 		{
 			var projectDropdownVM = new ProjectDropdownsViewModel();
 

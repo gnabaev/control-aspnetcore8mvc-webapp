@@ -4,7 +4,11 @@
 	{
 		List<Project> GetProjects();
 
+		Project GetProjectById(int id);
+
 		void AddProject(ProjectViewModel projectVM);
+
+		void EditProject(ProjectViewModel projectVM);
 
         ProjectDropdownsViewModel GetProjectDropdowns();
     }

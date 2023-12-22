@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 
 @media (min-width: 768px) {
   html {
@@ -15,6 +18,11 @@ html {
 html {
   position: relative;
   min-height: 100%;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 body {

@@ -28,9 +28,7 @@ namespace Control.Web.Controllers
 		public IActionResult Add()
 		{
 			var userDropdown = _service.GetProjectDropdowns();
-
 			ViewBag.Users = new SelectList(userDropdown.Users, "Id", "Fullname");
-			ViewBag.UserAdmins = new SelectList(userDropdown.Users, "Id", "Fullname");
 
             return View();
 		}
@@ -42,5 +40,44 @@ namespace Control.Web.Controllers
 
 			return RedirectToAction(nameof(Index));
 		}
-	}
+
+		public IActionResult Edit(int id)
+		{
+			var projectDb = _service.GetProjectById(id);
+
+            if (projectDb == null)
+            {
+                return View("ProjectNotFound");
+            }
+
+			var projectVM = new ProjectViewModel
+			{
+				Id = projectDb.Id,
+				Name = projectDb.Name,
+				Description = projectDb.Description,
+				Status = projectDb.Status,
+				UserIds = projectDb.UserProjects.Select(up => up.UserId).ToList()
+			};
+
+            var userDropdown = _service.GetProjectDropdowns();
+            ViewBag.Users = new SelectList(userDropdown.Users, "Id", "Fullname");
+
+			return View(projectVM);
+        }
+
+		[HttpPost]
+        public IActionResult Edit(int id, ProjectViewModel projectVM)
+        {
+			var projectDb = _service.GetProjectById(id);
+
+			if (projectDb == null)
+			{
+				return View("ProjectNotFound");
+			}
+
+			_service.EditProject(projectVM);
+
+			return RedirectToAction(nameof(Index));
+        }
+    }
 }

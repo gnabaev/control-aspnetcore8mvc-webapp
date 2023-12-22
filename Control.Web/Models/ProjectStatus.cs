@@ -4,13 +4,13 @@ namespace Control.Web.Models
 {
 	public enum ProjectStatus
 	{
-		[Display(Name = "Создан")]
+		[Display(Name = "Создано")]
 		Created,
         [Display(Name = "В работе")]
 		Active,
-        [Display(Name = "Завершен")]
+        [Display(Name = "Завершено")]
 		Completed,
-        [Display(Name = "Отложен")]
+        [Display(Name = "Отложено")]
 		Suspended
 	}
 }
