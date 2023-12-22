@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 // Регистрация сервисов
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IProjectsService, ProjectsService>();
+builder.Services.AddScoped<IIssuesService, IssuesService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

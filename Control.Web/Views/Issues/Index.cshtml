@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Issue>;
+
+@{
+    ViewData["Title"] = "Замечания";
+}
+
+<a asp-controller="Issues" asp-action="Add" class="btn btn-outline-success">Добавить</a>
+<div class="row">
+    <h1>Замечания к проекту</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Дата создания</th>
+                <th>Дата отработки</th>
+                <th>Раздел</th>
+                <th>Наименование</th>
+                <th>Создатель</th>
+                <th>Исполнитель</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var issue in Model)
+            {
+                <tr>
+                    <td>@issue.Id</td>
+                    <td>@issue.CreationDateTime</td>
+                    <td>@issue.CompletionDateTime</td>
+                    <td>@issue.Discipline</td>
+                    <td>@issue.Name</td>
+                    @if (issue.Creator != null)
+                    {
+                        <td>@issue.Creator.Fullname</td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="badge bg-danger text-white">Не назначен</span>
+                        </td>
+                    }
+
+                    @if (issue.Executor != null)
+                    {
+                        <td>@issue.Executor.Fullname</td>
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="badge bg-danger text-white">Не назначен</span>
+                        </td>
+                    }
+
+                    <td>@issue.Status</td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Details" asp-route-id="@issue.Id">Подробнее</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

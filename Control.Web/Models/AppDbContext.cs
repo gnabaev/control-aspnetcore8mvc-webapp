@@ -71,6 +71,40 @@ namespace Control.Web.Models
 					Surname = "Федоров"
 				}
 			});
+
+            modelBuilder.Entity<Issue>().HasData(new List<Issue>()
+            {
+                new Issue
+                {
+                    Id = 1,
+                    Name = "Наименование 1",
+                    Description = "Описание 1",
+                    CreationDateTime= DateTime.Now,
+                    Status = IssueStatus.Created,
+                    Discipline = IssueDiscipline.Architecture,
+                    ProjectId = 1
+                },
+                new Issue
+                {
+                    Id = 2,
+                    Name = "Наименование 2",
+                    Description = "Описание 2",
+                    CreationDateTime= DateTime.Now,
+                    Status = IssueStatus.Created,
+                    Discipline = IssueDiscipline.Architecture,
+                    ProjectId = 1
+                },
+                new Issue
+                {
+                    Id = 3,
+                    Name = "Наименование 3",
+                    Description = "Описание 3",
+                    CreationDateTime= DateTime.Now,
+                    Status = IssueStatus.Created,
+                    Discipline = IssueDiscipline.Architecture,
+                    ProjectId = 1
+                }
+            });
         }
     }
 }

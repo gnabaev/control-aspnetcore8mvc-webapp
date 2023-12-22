@@ -16,7 +16,7 @@ namespace Control.Web.Models
 
         public DateTime CreationDateTime { get; set; }
 
-        public DateTime CompletionDateTime { get; set; }
+        public DateTime? CompletionDateTime { get; set; }
 
         public IssueStatus Status { get; set; }
 
@@ -33,5 +33,6 @@ namespace Control.Web.Models
 
         public string? ExecutorId { get; set; }
 
+        public User? Executor { get; set; }
     }
 }
