@@ -10,6 +10,8 @@ namespace Control.Web.Models
 
         public DbSet<UserProject> UserProjects { get; set; }
 
+		public DbSet<Issue> Issues { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();
