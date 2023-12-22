@@ -1,0 +1,48 @@
+﻿@model ProjectViewModel
+
+@{
+	ViewData["Title"] = "Новый проект";
+}
+
+<div class="row">
+	<div>
+		<p>
+			<h1>Новый проект</h1>
+		</p>
+
+		<div class="row">
+			<div class="col">
+				<form asp-controller="Projects" asp-action="Add" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label asp-for="Name" class="control-label"></label>
+								<input asp-for="Name" type="text" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Description" class="control-label"></label>
+								<textarea asp-for="Description" class="form-control"></textarea>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="UserIds" class="control-label"></label>
+								<select asp-for="UserIds" class="form-control" multiple asp-items="ViewBag.Users"></select>
+								<span asp-validation-for="UserIds" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success" asp-controller="Projects" asp-action="Add">Добавить</button>
+						<a class="btn btn-outline-primary" asp-controller="Projects" asp-action="Index">Назад</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

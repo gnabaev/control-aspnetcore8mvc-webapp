@@ -17,11 +17,6 @@ namespace Control.Web.Models
 		public ProjectStatus Status { get; set; }
 
 		// Реляционные отношения
-		public int? AdminId { get; set; }
-
-		[ForeignKey(nameof(AdminId))]
-		public ProjectAdmin? Admin { get; set; }
-
-		public List<User>? Users { get; set; } = new List<User>();
-	}
+        public List<UserProject>? UserProjects { get; set; } = new List<UserProject>();
+    }
 }
