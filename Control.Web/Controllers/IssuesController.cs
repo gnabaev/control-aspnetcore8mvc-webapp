@@ -7,18 +7,16 @@ namespace Control.Web.Controllers
 {
     public class IssuesController : Controller
     {
-        private readonly IIssuesService _issueService;
-        private readonly IProjectsService _projectsService;
+        private readonly IIssuesService _service;
 
-		public IssuesController(IIssuesService service, IProjectsService projectsService)
+		public IssuesController(IIssuesService service)
 		{
-			_issueService = service;
-			_projectsService = projectsService;
+			_service = service;
 		}
 
 		public IActionResult Index(int projectId)
         {
-            var projectIssues = _issueService.GetIssuesByProjectId(projectId);
+            var projectIssues = _service.GetIssuesByProjectId(projectId);
 
             // Для кнопки Добавить, так как невозможно получить имя проекта из любого замечания, если их еще нет в данном проекте.
             ViewBag.ProjectId = projectId;
@@ -33,7 +31,7 @@ namespace Control.Web.Controllers
 
         public IActionResult Details(int projectId, int id)
         {
-            var projectIssue = _issueService.GetIssueByProjectIdAndId(projectId, id);
+            var projectIssue = _service.GetIssueByProjectIdAndId(projectId, id);
 
             if (projectIssue == null)
             {
@@ -45,7 +43,7 @@ namespace Control.Web.Controllers
 
         public IActionResult Add(int projectId)
         {
-            var dropdowns = _issueService.GetIssueDropdowns();
+            var dropdowns = _service.GetIssueDropdowns();
             ViewBag.Users = new SelectList(dropdowns.Users, "Id", "Fullname");
             ViewBag.Projects = new SelectList(dropdowns.Projects, "Id", "Name");
 
@@ -55,48 +53,52 @@ namespace Control.Web.Controllers
         [HttpPost]
         public IActionResult Add(int projectId, IssueViewModel issueVM)
         {
-            _issueService.AddIssue(projectId, issueVM);
+            _service.AddIssue(projectId, issueVM);
 
             return RedirectToAction(nameof(Index), new { projectId });
         }
 
-        //public IActionResult Edit(int id)
-        //{
-        //    var projectDb = _service.GetProjectById(id);
+        public IActionResult Edit(int projectId, int id)
+        {
+            var issueDb = _service.GetIssueByProjectIdAndId(projectId, id);
 
-        //    if (projectDb == null)
-        //    {
-        //        return View("ProjectNotFound");
-        //    }
+			if (issueDb == null)
+            {
+                return View("IssueNotFound");
+            }
 
-        //    var projectVM = new ProjectViewModel
-        //    {
-        //        Id = projectDb.Id,
-        //        Name = projectDb.Name,
-        //        Description = projectDb.Description,
-        //        Status = projectDb.Status,
-        //        UserIds = projectDb.UserProjects.Select(up => up.UserId).ToList()
-        //    };
+            var issueVM = new IssueViewModel
+            {
+                Id = issueDb.Id,
+                Name = issueDb.Name,
+                Description = issueDb.Description,
+                Status = issueDb.Status,
+                Discipline = issueDb.Discipline,
+                ProjectId = issueDb.ProjectId,
+                CreatorId = issueDb.CreatorId,
+                ExecutorId = issueDb.ExecutorId,
+            };
 
-        //    var userDropdown = _service.GetProjectDropdowns();
-        //    ViewBag.Users = new SelectList(userDropdown.Users, "Id", "Fullname");
+            var dropdowns = _service.GetIssueDropdowns();
+            ViewBag.Users = new SelectList(dropdowns.Users, "Id", "Fullname");
+			ViewBag.Projects = new SelectList(dropdowns.Projects, "Id", "Name");
 
-        //    return View(projectVM);
-        //}
+			return View(issueVM);
+        }
 
-        //[HttpPost]
-        //public IActionResult Edit(int id, ProjectViewModel projectVM)
-        //{
-        //    var projectDb = _service.GetProjectById(id);
+        [HttpPost]
+        public IActionResult Edit(int projectId, int id, IssueViewModel issueVM)
+        {
+            var issueDb = _service.GetIssueByProjectIdAndId(projectId, id);
 
-        //    if (projectDb == null)
-        //    {
-        //        return View("ProjectNotFound");
-        //    }
+            if (issueDb == null)
+            {
+                return View("IssueNotFound");
+            }
 
-        //    _service.EditProject(projectVM);
+            _service.EditIssue(projectId, issueVM);
 
-        //    return RedirectToAction(nameof(Index));
-        //}
-    }
+			return RedirectToAction(nameof(Index), new { projectId });
+		}
+	}
 }

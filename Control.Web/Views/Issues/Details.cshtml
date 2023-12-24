@@ -14,36 +14,37 @@
                 <p class="card-text">Описание: @Model.Description</p>
                 <p class="card-text">Раздел: @Model.Discipline</p>
                 <p class="card-text">Дата создания: @Model.CreationDateTime</p>
-                <p class="card-text">Создатель: @Model.Creator.Fullname</p>
-                <p class="card-text">Исполнитель: @Model.Executor.Fullname</p>
 
                 @if (Model.Status == IssueStatus.Fixed)
                 {
-                    <p class="card-text">@Model.CompletionDateTime</p>
+                    <p class="card-text">Дата отработки: @Model.CompletionDateTime</p>
                 }
+
+                <p class="card-text">Создатель: @Model.Creator.Fullname</p>
+                <p class="card-text">Исполнитель: @Model.Executor.Fullname</p>
 
                 @if (Model.Status == IssueStatus.Active)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-primary text-white">В работе</span>
+                        Статус: <span class="badge bg-primary text-white">@Model.Status</span>
                     </p>
                 }
                 else if (Model.Status == IssueStatus.Fixed)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-success text-white">Отработано</span>
+                        Статус: <span class="badge bg-success text-white">@Model.Status</span>
                     </p>
                 }
                 else if (Model.Status == IssueStatus.Suspended)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-secondary text-white">Отложено</span>
+                        Статус: <span class="badge bg-secondary text-white">@Model.Status</span>
                     </p>
                 }
                 else
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-success text-white">Создано</span>
+                        Статус: <span class="badge bg-success text-white">@Model.Status</span>
                     </p>
                 }
 

@@ -1,0 +1,72 @@
+﻿@model IssueViewModel
+
+@{
+	ViewData["Title"] = "Редактирование замечания";
+}
+
+<div class="row">
+	<div>
+		<p>
+			<h1>Редактирование замечания</h1>
+		</p>
+
+		<div class="row">
+			<div class="col">
+				<form asp-controller="Issues" asp-action="Edit" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label asp-for="Discipline" class="control-label"></label>
+								<select asp-for="Discipline" class="form-control" asp-items="Html.GetEnumSelectList<IssueDiscipline>()"></select>
+								<span asp-validation-for="Discipline" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Name" class="control-label"></label>
+								<input asp-for="Name" type="text" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Description" class="control-label"></label>
+								<textarea asp-for="Description" class="form-control"></textarea>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Status" class="control-label"></label>
+								<select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<IssueStatus>()"></select>
+								<span asp-validation-for="Status" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="ProjectId" class="control-label"></label>
+								<select asp-for="ProjectId" class="form-control" asp-items="ViewBag.Projects"></select>
+								<span asp-validation-for="ProjectId" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="CreatorId" class="control-label"></label>
+								<select asp-for="CreatorId" class="form-control" asp-items="ViewBag.Users"></select>
+								<span asp-validation-for="CreatorId" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="ExecutorId" class="control-label"></label>
+								<select asp-for="ExecutorId" class="form-control" asp-items="ViewBag.Users"></select>
+								<span asp-validation-for="ExecutorId" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success" asp-controller="Issues" asp-action="Edit" asp-route-projectId="@Model.ProjectId" asp-route-id="@Model.Id">Сохранить</button>
+						<a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Index" asp-route-projectId="@Model.ProjectId">Назад</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

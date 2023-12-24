@@ -29,10 +29,30 @@ namespace Control.Web.Models
             _context.SaveChanges();
         }
 
-        public void EditIssue(IssueViewModel projectVM)
+        public void EditIssue(int projectId, IssueViewModel issueVM)
         {
-            throw new NotImplementedException();
-        }
+			var issueDb = _context.Issues.FirstOrDefault(i => i.Id == issueVM.Id);
+
+			if (issueDb != null)
+			{
+				issueDb.Name = issueVM.Name;
+				issueDb.Description = issueVM.Description;
+                issueDb.Discipline = issueVM.Discipline;
+				issueDb.Status = issueVM.Status;
+                issueDb.ProjectId = projectId;
+                issueDb.CreatorId = issueVM.CreatorId;
+                issueDb.ExecutorId = issueVM.ExecutorId;
+
+				_context.SaveChanges();
+
+				if (issueDb.Status == IssueStatus.Fixed)
+				{
+					issueDb.CompletionDateTime = DateTime.Now;
+
+					_context.SaveChanges();
+				}
+			}
+		}
 
         public Issue GetIssueByProjectIdAndId(int projectId, int id)
         {
@@ -52,7 +72,6 @@ namespace Control.Web.Models
         public List<Issue> GetIssuesByProjectId(int projectId)
         {
             return _context.Issues.Where(i => i.ProjectId == projectId).Include(i => i.Project).Include(i => i.Creator).Include(i => i.Executor).ToList();
-
         }
     }
 }

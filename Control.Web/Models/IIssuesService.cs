@@ -8,7 +8,7 @@
 
         void AddIssue(int projectId, IssueViewModel issueVM);
 
-        void EditIssue(IssueViewModel issueVM);
+        void EditIssue(int projectId, IssueViewModel issueVM);
 
         IssueDropdownsViewModel GetIssueDropdowns();
     }

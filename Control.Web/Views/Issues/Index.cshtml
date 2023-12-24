@@ -52,7 +52,31 @@
                         </td>
                     }
 
-                    <td>@issue.Status</td>
+                    @if (issue.Status == IssueStatus.Active)
+                    {
+                        <td class="card-text">
+                            <span class="badge bg-primary text-white">@issue.Status</span>
+                        </td>
+                    }
+                    else if (issue.Status == IssueStatus.Fixed)
+                    {
+                        <td class="card-text">
+                            <span class="badge bg-success text-white">@issue.Status</span>
+                        </td>
+                    }
+                    else if (issue.Status == IssueStatus.Suspended)
+                    {
+                        <td class="card-text">
+                            <span class="badge bg-secondary text-white">@issue.Status</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="card-text">
+                            <span class="badge bg-success text-white">@issue.Status</span>
+                        </td>
+                    }
+
                     <td>
                         <a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Details" asp-route-projectId="@issue.ProjectId" asp-route-id="@issue.Id">Подробнее</a>
                     </td>
