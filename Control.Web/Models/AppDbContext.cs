@@ -82,7 +82,9 @@ namespace Control.Web.Models
                     CreationDateTime= DateTime.Now,
                     Status = IssueStatus.Created,
                     Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1
+                    ProjectId = 1,
+                    CreatorId = "1",
+                    ExecutorId = "1"
                 },
                 new Issue
                 {
@@ -92,7 +94,9 @@ namespace Control.Web.Models
                     CreationDateTime= DateTime.Now,
                     Status = IssueStatus.Created,
                     Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1
+                    ProjectId = 1,
+                    CreatorId = "1",
+                    ExecutorId = "2"
                 },
                 new Issue
                 {
@@ -102,7 +106,9 @@ namespace Control.Web.Models
                     CreationDateTime= DateTime.Now,
                     Status = IssueStatus.Created,
                     Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1
+                    ProjectId = 1,
+                    CreatorId = "2",
+                    ExecutorId = "3"
                 }
             });
         }

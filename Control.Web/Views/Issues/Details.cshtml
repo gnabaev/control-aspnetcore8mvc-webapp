@@ -1,0 +1,57 @@
+﻿@model Issue;
+
+@{
+    ViewData["Title"] = $"Замечание №{Model.Id}";
+}
+
+<div class="card" style="max-width: 100%">
+    <div class="row">
+        <div class="col">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">№@Model.Id</p>
+                <p class="card-text">Проект: @Model.Project.Name</p>
+                <p class="card-text">Описание: @Model.Description</p>
+                <p class="card-text">Раздел: @Model.Discipline</p>
+                <p class="card-text">Дата создания: @Model.CreationDateTime</p>
+                <p class="card-text">Создатель: @Model.Creator.Fullname</p>
+                <p class="card-text">Исполнитель: @Model.Executor.Fullname</p>
+
+                @if (Model.Status == IssueStatus.Fixed)
+                {
+                    <p class="card-text">@Model.CompletionDateTime</p>
+                }
+
+                @if (Model.Status == IssueStatus.Active)
+                {
+                    <p class="card-text">
+                        Статус: <span class="badge bg-primary text-white">В работе</span>
+                    </p>
+                }
+                else if (Model.Status == IssueStatus.Fixed)
+                {
+                    <p class="card-text">
+                        Статус: <span class="badge bg-success text-white">Отработано</span>
+                    </p>
+                }
+                else if (Model.Status == IssueStatus.Suspended)
+                {
+                    <p class="card-text">
+                        Статус: <span class="badge bg-secondary text-white">Отложено</span>
+                    </p>
+                }
+                else
+                {
+                    <p class="card-text">
+                        Статус: <span class="badge bg-success text-white">Создано</span>
+                    </p>
+                }
+
+                <div class="btn-group">
+                    <a class="btn btn-outline-success" asp-controller="Issues" asp-action="Edit" asp-route-projectId="@Model.ProjectId" asp-route-id="@Model.Id">Редактировать</a>
+                    <a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Index" asp-route-projectId="@Model.ProjectId">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

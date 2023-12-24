@@ -4,10 +4,10 @@
     ViewData["Title"] = "Замечания";
 }
 
-<a asp-controller="Issues" asp-action="Add" class="btn btn-outline-success">Добавить</a>
+<a asp-controller="Issues" asp-action="Add" asp-route-projectId="@ViewBag.ProjectId" class="btn btn-outline-success">Добавить</a>
 <div class="row">
     <h1>Замечания к проекту</h1>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -54,10 +54,11 @@
 
                     <td>@issue.Status</td>
                     <td>
-                        <a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Details" asp-route-id="@issue.Id">Подробнее</a>
+                        <a class="btn btn-outline-primary" asp-controller="Issues" asp-action="Details" asp-route-projectId="@issue.ProjectId" asp-route-id="@issue.Id">Подробнее</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+<a class="btn btn-outline-primary" asp-controller="Projects" asp-action="Index">Назад</a>

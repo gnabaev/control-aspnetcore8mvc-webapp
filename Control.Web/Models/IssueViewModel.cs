@@ -14,6 +14,9 @@ namespace Control.Web.Models
         [Display(Name = "Описание")]
         public string? Description { get; set; }
 
+        [Display(Name = "Раздел")]
+        public IssueDiscipline Discipline { get; set; }
+
         [Display(Name = "Статус")]
         public IssueStatus Status { get; set; }
 

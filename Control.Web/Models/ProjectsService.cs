@@ -88,7 +88,6 @@ namespace Control.Web.Models
 
 			return projectDropdownVM;
 		}
-
 		public List<Project> GetProjects()
 		{
 			return _context.Projects.Include(p => p.UserProjects).ThenInclude(p => p.User).ToList();

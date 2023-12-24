@@ -33,6 +33,7 @@ namespace Control.Web.Models
 
         public string? ExecutorId { get; set; }
 
+        [ForeignKey(nameof(ExecutorId))]
         public User? Executor { get; set; }
     }
 }

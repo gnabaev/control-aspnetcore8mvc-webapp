@@ -1,6 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Control.Web.Models
 {
@@ -13,9 +11,22 @@ namespace Control.Web.Models
             _context = context;
         }
 
-        public void AddIssue(IssueViewModel projectVM)
+        public void AddIssue(int projectId, IssueViewModel issueVM)
         {
-            throw new NotImplementedException();
+            var issueDb = new Issue()
+            {
+                Name = issueVM.Name,
+                Description = issueVM.Description,
+                Discipline = issueVM.Discipline,
+                CreationDateTime = DateTime.Now,
+                Status = issueVM.Status,
+                ProjectId = projectId,
+                CreatorId = issueVM.CreatorId,
+                ExecutorId = issueVM.ExecutorId
+            };
+
+            _context.Issues.Add(issueDb);
+            _context.SaveChanges();
         }
 
         public void EditIssue(IssueViewModel projectVM)
@@ -25,17 +36,22 @@ namespace Control.Web.Models
 
         public Issue GetIssueByProjectIdAndId(int projectId, int id)
         {
-            throw new NotImplementedException();
+            return _context.Issues.Where(i => i.ProjectId == projectId).Include(i => i.Project).Include(i => i.Creator).Include(i => i.Executor).FirstOrDefault(i => i.Id == id);
         }
 
         public IssueDropdownsViewModel GetIssueDropdowns()
         {
-            throw new NotImplementedException();
+            var issueDropdownVM = new IssueDropdownsViewModel();
+
+            issueDropdownVM.Users = _context.Users.ToList();
+            issueDropdownVM.Projects = _context.Projects.ToList();
+
+            return issueDropdownVM;
         }
 
         public List<Issue> GetIssuesByProjectId(int projectId)
         {
-            return _context.Issues.Where(p => p.ProjectId == projectId).Include(p => p.Project).Include(i => i.Creator).Include(i => i.Executor).ToList();
+            return _context.Issues.Where(i => i.ProjectId == projectId).Include(i => i.Project).Include(i => i.Creator).Include(i => i.Executor).ToList();
 
         }
     }

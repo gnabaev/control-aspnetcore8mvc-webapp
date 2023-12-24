@@ -6,9 +6,9 @@
 
         Issue GetIssueByProjectIdAndId(int projectId, int id);
 
-        void AddIssue(IssueViewModel projectVM);
+        void AddIssue(int projectId, IssueViewModel issueVM);
 
-        void EditIssue(IssueViewModel projectVM);
+        void EditIssue(IssueViewModel issueVM);
 
         IssueDropdownsViewModel GetIssueDropdowns();
     }
