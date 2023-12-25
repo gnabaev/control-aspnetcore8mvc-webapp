@@ -1,0 +1,42 @@
+﻿@model AuthorizationViewModel;
+
+@{
+	ViewData["Title"] = "Авторизация";
+}
+
+<div class="row">
+	<div>
+		<p>
+			<h1>Авторизация</h1>
+		</p>
+
+		<div class="row">
+			<div class="col">
+				<form asp-controller="Users" asp-action="Login" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label asp-for="UserName" class="control-label"></label>
+								<input asp-for="UserName" type="email" class="form-control" />
+								<span asp-validation-for="UserName" class="text-danger"></span>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Password" class="control-label"></label>
+								<input asp-for="Password" type="password" class="form-control" />
+								<span asp-validation-for="Password" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success" asp-controller="Users" asp-action="Login">Вход</button>
+						<a class="btn btn-outline-primary" asp-controller="Projects" asp-action="Index">Назад</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
