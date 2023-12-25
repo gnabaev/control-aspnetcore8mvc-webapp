@@ -20,8 +20,8 @@
                     <p class="card-text">Дата отработки: @Model.CompletionDateTime</p>
                 }
 
-                <p class="card-text">Создатель: @Model.Creator.Fullname</p>
-                <p class="card-text">Исполнитель: @Model.Executor.Fullname</p>
+                <p class="card-text">Создатель: @Model.Creator.FullName</p>
+                <p class="card-text">Исполнитель: @Model.Executor.FullName</p>
 
                 @if (Model.Status == IssueStatus.Active)
                 {

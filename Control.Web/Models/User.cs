@@ -8,7 +8,7 @@ namespace Control.Web.Models
 
 		public required string Surname { get; set; }
 
-		public string Fullname
+		public string FullName
 		{
 			get
 			{
