@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Control.Web.Models
 {
-	public class User
+	public class User : IdentityUser
 	{
-		[Key]
-		public required string Id { get; set; }
-
 		public required string Name { get; set; }
 
 		public required string Surname { get; set; }
