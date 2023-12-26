@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Control.Web.Models
 {
-	public class AppDbContext : DbContext
+	public class AppDbContext : IdentityDbContext<User>
 	{
-		public DbSet<User> Users { get; set; }
-
 		public DbSet<Project> Projects { get; set; }
 
         public DbSet<UserProject> UserProjects { get; set; }

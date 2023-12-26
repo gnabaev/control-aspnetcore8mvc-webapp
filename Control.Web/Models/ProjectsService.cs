@@ -18,7 +18,7 @@ namespace Control.Web.Models
 				Name = projectVM.Name,
 				Description = projectVM.Description,
 				CreationDateTime = DateTime.Now,
-				Status = ProjectStatus.Created,
+				Status = ProjectStatus.Created
 			};
 
 			_context.Projects.Add(projectDb);

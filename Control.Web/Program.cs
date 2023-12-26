@@ -8,10 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Подключение базы данных
 string connection = builder.Configuration.GetConnectionString("DefaultConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
-builder.Services.AddDbContext<AppIdentityContext>(options => options.UseSqlServer(connection));
 
 // Установление модели пользователя и роли, а также хранилища на основе контекста
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
 // Подключение аутентификации на основке куки
 builder.Services.ConfigureApplicationCookie(options =>
