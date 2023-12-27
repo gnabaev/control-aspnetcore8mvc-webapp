@@ -26,6 +26,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Index">Проекты</a>
                         </li>
                     </ul>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole(UserRoles.SuperAdmin))
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">@UserRoles.SuperAdmin</a>
+                        }
+
+                        <form asp-controller="Users" asp-action="Logout">
+                            <button class="btn btn-outline-success">Выход</button>
+                        </form>
+                        <p>@User.Identity.Name</p>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-success" asp-area="" asp-controller="Users" asp-action="Login">Вход</a>
+                        <a class="btn btn-outline-primary" asp-area="" asp-controller="Users" asp-action="Register">Регистрация</a>
+                    }
                 </div>
             </div>
         </nav>

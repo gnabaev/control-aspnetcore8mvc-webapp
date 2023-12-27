@@ -44,7 +44,7 @@ namespace Control.Web.Controllers
         public IActionResult Add(int projectId)
         {
             var dropdowns = _service.GetIssueDropdowns();
-            ViewBag.Users = new SelectList(dropdowns.Users, "Id", "Fullname");
+            ViewBag.Users = new SelectList(dropdowns.Users, "Id", "FullName");
             ViewBag.Projects = new SelectList(dropdowns.Projects, "Id", "Name");
 
             return View();
@@ -80,7 +80,7 @@ namespace Control.Web.Controllers
             };
 
             var dropdowns = _service.GetIssueDropdowns();
-            ViewBag.Users = new SelectList(dropdowns.Users, "Id", "Fullname");
+            ViewBag.Users = new SelectList(dropdowns.Users, "Id", "FullName");
 			ViewBag.Projects = new SelectList(dropdowns.Projects, "Id", "Name");
 
 			return View(issueVM);

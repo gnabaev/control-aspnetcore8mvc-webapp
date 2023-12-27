@@ -48,68 +48,6 @@ namespace Control.Web.Models
 					Status = ProjectStatus.Created
 				}
 			});
-
-            modelBuilder.Entity<User>().HasData(new List<User>()
-            {
-                new User
-                {
-                    Id = "1",
-                    Name = "Иван",
-                    Surname = "Иванов"
-                },
-                new User
-                {
-                    Id = "2",
-                    Name = "Алексей",
-                    Surname = "Алексеев"
-                },
-				new User
-				{
-					Id = "3",
-					Name = "Федор",
-					Surname = "Федоров"
-				}
-			});
-
-            modelBuilder.Entity<Issue>().HasData(new List<Issue>()
-            {
-                new Issue
-                {
-                    Id = 1,
-                    Name = "Наименование 1",
-                    Description = "Описание 1",
-                    CreationDateTime= DateTime.Now,
-                    Status = IssueStatus.Created,
-                    Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1,
-                    CreatorId = "1",
-                    ExecutorId = "1"
-                },
-                new Issue
-                {
-                    Id = 2,
-                    Name = "Наименование 2",
-                    Description = "Описание 2",
-                    CreationDateTime= DateTime.Now,
-                    Status = IssueStatus.Created,
-                    Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1,
-                    CreatorId = "1",
-                    ExecutorId = "2"
-                },
-                new Issue
-                {
-                    Id = 3,
-                    Name = "Наименование 3",
-                    Description = "Описание 3",
-                    CreationDateTime= DateTime.Now,
-                    Status = IssueStatus.Created,
-                    Discipline = IssueDiscipline.Architecture,
-                    ProjectId = 1,
-                    CreatorId = "2",
-                    ExecutorId = "3"
-                }
-            });
         }
     }
 }

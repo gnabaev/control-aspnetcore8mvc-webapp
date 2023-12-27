@@ -28,7 +28,7 @@ namespace Control.Web.Controllers
 		public IActionResult Add()
 		{
 			var userDropdown = _service.GetProjectDropdowns();
-			ViewBag.Users = new SelectList(userDropdown.Users, "Id", "Fullname");
+			ViewBag.Users = new SelectList(userDropdown.Users, "Id", "FullName");
 
             return View();
 		}
@@ -60,7 +60,7 @@ namespace Control.Web.Controllers
 			};
 
             var userDropdown = _service.GetProjectDropdowns();
-            ViewBag.Users = new SelectList(userDropdown.Users, "Id", "Fullname");
+            ViewBag.Users = new SelectList(userDropdown.Users, "Id", "FullName");
 
 			return View(projectVM);
         }
