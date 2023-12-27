@@ -6,6 +6,8 @@ namespace Control.Web.Models
     {
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Обязательное поле")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Почтовый адрес некорректен")]
         public string? UserName { get; set; }
 
         [Display(Name = "Пароль")]
