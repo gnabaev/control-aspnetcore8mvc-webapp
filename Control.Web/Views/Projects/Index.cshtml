@@ -21,25 +21,25 @@
                         @if (project.Status == ProjectStatus.Active)
                         {
                             <p class="card-text">
-                                Статус: <span class="badge bg-primary text-white">@project.Status</span>
+                                Статус: <span class="badge bg-primary text-white">@EnumHelper.GetDisplayName(project.Status)</span>
                             </p>
                         }
                         else if (project.Status == ProjectStatus.Completed)
                         {
                             <p class="card-text">
-                                Статус: <span class="badge bg-success text-white">@project.Status</span>
+                                Статус: <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(project.Status)</span>
                             </p>
                         }
                         else if (project.Status == ProjectStatus.Suspended)
                         {
                             <p class="card-text">
-                                Статус: <span class="badge bg-secondary text-white">@project.Status</span>
+                                Статус: <span class="badge bg-secondary text-white">@EnumHelper.GetDisplayName(project.Status)</span>
                             </p>
                         }
                         else
                         {
                             <p class="card-text">
-                                Статус: <span class="badge bg-success text-white">@project.Status</span>
+                                Статус: <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(project.Status)</span>
                             </p>
                         }
 

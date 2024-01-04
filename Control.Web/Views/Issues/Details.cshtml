@@ -12,7 +12,7 @@
                 <p class="card-text">№@Model.Id</p>
                 <p class="card-text">Проект: @Model.Project.Name</p>
                 <p class="card-text">Описание: @Model.Description</p>
-                <p class="card-text">Раздел: @Model.Discipline</p>
+                <p class="card-text">Раздел: @EnumHelper.GetDisplayName(Model.Discipline)</p>
                 <p class="card-text">Дата создания: @Model.CreationDateTime</p>
 
                 @if (Model.Status == IssueStatus.Fixed)
@@ -26,25 +26,25 @@
                 @if (Model.Status == IssueStatus.Active)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-primary text-white">@Model.Status</span>
+                        Статус: <span class="badge bg-primary text-white">@EnumHelper.GetDisplayName(Model.Status)</span>
                     </p>
                 }
                 else if (Model.Status == IssueStatus.Fixed)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-success text-white">@Model.Status</span>
+                        Статус: <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(Model.Status)</span>
                     </p>
                 }
                 else if (Model.Status == IssueStatus.Suspended)
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-secondary text-white">@Model.Status</span>
+                        Статус: <span class="badge bg-secondary text-white">@EnumHelper.GetDisplayName(Model.Status)</span>
                     </p>
                 }
                 else
                 {
                     <p class="card-text">
-                        Статус: <span class="badge bg-success text-white">@Model.Status</span>
+                        Статус: <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(Model.Status)</span>
                     </p>
                 }
 

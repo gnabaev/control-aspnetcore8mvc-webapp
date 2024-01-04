@@ -28,7 +28,7 @@
                     <td>@issue.Id</td>
                     <td>@issue.CreationDateTime</td>
                     <td>@issue.CompletionDateTime</td>
-                    <td>@issue.Discipline</td>
+                    <td>@EnumHelper.GetDisplayName(issue.Discipline)</td>
                     <td>@issue.Name</td>
                     @if (issue.Creator != null)
                     {
@@ -55,25 +55,25 @@
                     @if (issue.Status == IssueStatus.Active)
                     {
                         <td class="card-text">
-                            <span class="badge bg-primary text-white">@issue.Status</span>
+                            <span class="badge bg-primary text-white">@EnumHelper.GetDisplayName(issue.Status)</span>
                         </td>
                     }
                     else if (issue.Status == IssueStatus.Fixed)
                     {
                         <td class="card-text">
-                            <span class="badge bg-success text-white">@issue.Status</span>
+                            <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(issue.Status)</span>
                         </td>
                     }
                     else if (issue.Status == IssueStatus.Suspended)
                     {
                         <td class="card-text">
-                            <span class="badge bg-secondary text-white">@issue.Status</span>
+                            <span class="badge bg-secondary text-white">@EnumHelper.GetDisplayName(issue.Status)</span>
                         </td>
                     }
                     else
                     {
                         <td class="card-text">
-                            <span class="badge bg-success text-white">@issue.Status</span>
+                            <span class="badge bg-success text-white">@EnumHelper.GetDisplayName(issue.Status)</span>
                         </td>
                     }
 
