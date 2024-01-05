@@ -11,6 +11,8 @@ namespace Control.Web.Models
 
 		public DbSet<Issue> Issues { get; set; }
 
+        public DbSet<Issue> IssueComments { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 			Database.EnsureCreated();

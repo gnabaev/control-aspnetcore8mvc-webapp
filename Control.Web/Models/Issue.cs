@@ -35,5 +35,7 @@ namespace Control.Web.Models
 
         [ForeignKey(nameof(ExecutorId))]
         public User? Executor { get; set; }
+
+        public List<IssueComment> IssueComments { get; set; } = new List<IssueComment>();
     }
 }

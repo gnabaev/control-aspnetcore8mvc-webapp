@@ -18,5 +18,7 @@ namespace Control.Web.Models
 
         // Реляционные отношения
         public List<UserProject>? UserProjects { get; set; } = new List<UserProject>();
+
+		public List<IssueComment> IssueComments { get; set; } = new List<IssueComment>();
     }
 }
