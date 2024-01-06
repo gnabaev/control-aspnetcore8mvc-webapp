@@ -27,6 +27,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Регистрация сервисов
 builder.Services.AddScoped<IProjectsService, ProjectsService>();
 builder.Services.AddScoped<IIssuesService, IssuesService>();
+builder.Services.AddScoped<IIssueCommentsService, IssueCommentsService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Добавление сервисов в контейнер.
 builder.Services.AddControllersWithViews();

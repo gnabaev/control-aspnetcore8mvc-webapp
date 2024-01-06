@@ -14,11 +14,11 @@ namespace Control.Web.Models
         public required string UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public required User User { get; set; }
+        public User? User { get; set; }
 
         public required int IssueId { get; set; }
 
         [ForeignKey(nameof(IssueId))]
-        public required Issue Issue { get; set; }
+        public Issue? Issue { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace Control.Web.Models
 
         public Issue GetIssueByProjectIdAndId(int projectId, int id)
         {
-            return _context.Issues.Where(i => i.ProjectId == projectId).Include(i => i.Project).Include(i => i.Creator).Include(i => i.Executor).FirstOrDefault(i => i.Id == id);
+            return _context.Issues.Where(i => i.ProjectId == projectId).Include(i => i.Project).Include(i => i.Creator).Include(i => i.Executor).Include(i => i.IssueComments).FirstOrDefault(i => i.Id == id);
         }
 
         public IssueDropdownsViewModel GetIssueDropdowns()
