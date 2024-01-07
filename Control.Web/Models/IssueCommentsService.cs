@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace Control.Web.Models
+﻿namespace Control.Web.Models
 {
     public class IssueCommentsService : IIssueCommentsService
     {
