@@ -1,4 +1,5 @@
 using Control.Web.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,9 +59,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Установление паттернов маршрутизации
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id1?}/{id2?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+		name: "area_default",
+		pattern: "{area:exists}/{controller=Home}/{action=Index}/{id1?}/{id2?}");
+
+    endpoints.MapControllerRoute(
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id1?}/{id2?}");
+
+});
 
 // Инициализация суперадмина и базовых ролей
 using (var serviceScope = app.Services.CreateScope())

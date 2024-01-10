@@ -31,7 +31,15 @@
                     {
                         @if (User.IsInRole(UserRoles.SuperAdmin))
                         {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">@UserRoles.SuperAdmin</a>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Администрирование
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="SuperAdmin" asp-controller="Users" asp-action="Index">Пользователи</a></li>
+                                    <li><a class="dropdown-item" asp-area="SuperAdmin" asp-controller="Roles" asp-action="Index">Роли</a></li>
+                                </ul>
+                            </div>
                         }
 
                         <form asp-controller="Users" asp-action="Logout">

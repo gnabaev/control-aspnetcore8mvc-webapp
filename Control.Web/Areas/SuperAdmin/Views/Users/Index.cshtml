@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<User>;
+
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+<div class="row">
+    <h1>Пользователи</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>E-mail</th>
+                <th>Имя</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Email</td>
+                    <td>@user.FullName</td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-area="SuperAdmin" asp-controller="Users" asp-action="ChangeRole" asp-route-userId="@user.Id">Изменить роль</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

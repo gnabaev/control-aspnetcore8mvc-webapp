@@ -1,9 +1,12 @@
 ﻿using Control.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Control.Web.Controllers
+namespace Control.Web.Areas.SuperAdmin.Controllers
 {
+    [Area(nameof(UserRoles.SuperAdmin))]
+    [Authorize(Roles = UserRoles.SuperAdmin)]
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _manager;
